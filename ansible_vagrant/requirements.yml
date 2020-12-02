@@ -1,0 +1,6 @@
+---
+- andrelohmann.root_colored_prompt
+- andrelohmann.zulu_openjdk
+- andrelohmann.percona_mysql
+- andrelohmann.mysql_grants
+...

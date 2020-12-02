@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+
+export JAVA_HOME={{ ENV_JAVA_HOME }}
+
+export LOG_LEVEL_ROOT=TRACE
+export LOG_LEVEL_MIRAKL=TRACE
+export LOG_LEVEL_RG=TRACE
+export LOG_LEVEL_HIBERNATE=TRACE
+
+export APP_PORT={{ app_port }}
+
+export MYSQL_USERNAME="{{ ENV_MYSQL_USERNAME }}"
+export MYSQL_PASSWORD="{{ ENV_MYSQL_PASSWORD }}"
+export MYSQL_URL="{{ ENV_MYSQL_URL }}"

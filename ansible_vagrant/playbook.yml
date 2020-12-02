@@ -1,0 +1,47 @@
+---
+
+- hosts: all
+  become: true
+  become_method: sudo
+
+  vars:
+    zulu_openjdk_version: "15"
+    app_domain: app.lokal
+    app_port: 8081
+    percona_mysql_root_password: "SOMELONGPASSWORDw1thsp3c!@lcharacters"
+    mysql_grants_databases:
+    - name: appdb
+      encoding: utf8
+    mysql_grants_users:
+    - name: appuser
+      password: '@ppp@ssw0rd'
+      host: localhost
+      priv: 'appdb.*:ALL'
+      state: present
+
+    # VARIABLES
+    # Local mysql server
+    ENV_MYSQL_USERNAME: appuser
+    ENV_MYSQL_PASSWORD: '@ppp@ssw0rd'
+    ENV_MYSQL_URL: jdbc:mysql://localhost:3306/appdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+    ENV_JAVA_HOME: /usr/lib/jvm/zulu15
+
+    amc_user: vagrant
+    amc_group: vagrant
+
+
+  pre_tasks:
+  - name: Include custom_vars.yml
+    include_vars:
+      file: custom_vars.yml
+
+  roles:
+  - andrelohmann.root_colored_prompt
+  - andrelohmann.zulu_openjdk
+  - andrelohmann.percona_mysql
+  - andrelohmann.mysql_grants
+  - proxy
+  - app_installer
+
+...

@@ -1,0 +1,30 @@
+---
+
+- name: create group
+  group:
+    name: "{{ amc_group }}"
+    state: present
+
+- name: create user
+  user:
+    name: "{{ amc_user }}"
+    group: "{{ amc_group }}"
+    state: present
+
+- name: set git user.name
+  command: git config --global user.name "{{ git_user_name }}"
+  become_user: "{{ amc_user }}"
+
+- name: set git user.email
+  command: git config --global user.email "{{ git_user_email }}"
+  become_user: "{{ amc_user }}"
+
+- name: add /etc/environment
+  template:
+    src: environment.j2
+    dest: /etc/environment
+    owner: root
+    group: root
+    mode: 0644
+
+...

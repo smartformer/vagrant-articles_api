@@ -1,0 +1,7 @@
+---
+configs:
+  memory: "4096"
+  cpus: "2"
+  ip: "192.168.177.88"
+  domain: app.lokal
+...
