@@ -22,10 +22,10 @@ end
 Vagrant.configure("2") do |config|
 
   # clone repository to application folder before starting the machine
-  #config.trigger.before :up do |trigger|
-  #  trigger.info = "Cloning repositories..."
-  #  trigger.run = {path: "./git_clone.sh"}
-  #end
+  config.trigger.before :up do |trigger|
+    trigger.info = "Cloning repositories..."
+    trigger.run = {path: "./git_clone.sh"}
+  end
 
   # activate hostmanager plugin
   config.hostmanager.enabled = true
